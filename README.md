@@ -1,4 +1,4 @@
-# AI Crawler Chat Assistant
+# AI RAG for Sites (ar4s)
 
 ## Overview
 The AI Crawler Chat Assistant is a project designed to provide intelligent responses to user queries based on a RAG (Retrieval-Augmented Generation) of a crawled site.
