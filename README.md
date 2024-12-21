@@ -1,7 +1,7 @@
 # AI RAG for Sites (ar4s)
 
 ## Overview
-The AI Crawler Chat Assistant is a project designed to provide intelligent responses to user queries based on a RAG (Retrieval-Augmented Generation) of a crawled site.
+The AI RAG for Sites is a project designed to provide intelligent responses to user queries based on a RAG (Retrieval-Augmented Generation) of a crawled site.
 
 ## Features
 - Intelligent data crawling
@@ -20,11 +20,24 @@ To install the project, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/ai-crawler-chat-assistant.git
+    git clone git@github.com:saulopaiva/ai-rag-for-sites.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd ai-crawler-chat-assistant
+    cd ai-rag-for-sites
     ```
 
-@TODO: Update instalattion based on each 
+### Crawler
+1. Navigate to the crawler directory:
+    ```bash
+    cd crawler
+    ```
+2. Install the project:
+    ```bash
+    npm install
+    ```
+3. Run the project:
+    ```bash
+    npm start
+    ```
+
