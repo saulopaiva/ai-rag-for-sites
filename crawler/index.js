@@ -21,6 +21,9 @@ const maxConcurrency = 2;
 // define the data handler function
 const logPage = (url, data) => {
   console.log(url);
+  // convert data do markdown
+  // 1. page parse: https://github.com/saulopaiva/ai-site-assistant-poc/blob/main/degreegurucrawler/degreegurucrawler/spiders/configurable.py#L64
+  // 2. add to vectorstore https://js.langchain.com/docs/integrations/text_embedding/openai/
 };
 
 crawler({

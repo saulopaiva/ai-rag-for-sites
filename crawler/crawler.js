@@ -1,7 +1,15 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-const normalizeUrl = (url, baseUrl) => {
+/**
+ * Normalize the URL removing trailing slashes from the pathname
+ *
+ * @param {Object} param - Function parameters
+ * @param {string} param.url - The URL to be normalized
+ * @param {string} param.baseUrl - The Base URL of site
+ * @returns {string}
+ */
+const normalizeUrl = ({url, baseUrl}) => {
   try {
     // create a URL object and use baseUrl for relative URLs
     const normalized = new URL(url, baseUrl);
@@ -19,7 +27,68 @@ const normalizeUrl = (url, baseUrl) => {
   }
 };
 
-// define a crawler function
+/**
+ * Filter the allowed URLs to be visited from the page
+ *
+ * @param {Object} param0 - Function parameters
+ * @param {string} param0.baseUrl - The base URL of the site
+ * @param {Set} param0.visitedUrls - The set of visited URLs
+ * @param {Array} param0.pagesQueue - The queue of pages to be crawled
+ * @param {Array} param0.allowedPagesToVisit - The allowed pages to be visited
+ * @param {Object} param0.$ - The cheerio object
+ * @returns {Array}
+ */
+const getNewAllowedLinks = ({baseUrl, visitedUrls, pagesQueue, allowedPagesToVisit, $}) => {
+  const allowedLinkElements = [];
+  const allowedUrls = [];
+
+  try {
+    if (allowedPagesToVisit) {
+      allowedPagesToVisit.forEach(link => {
+        allowedLinkElements.push($('a[href^="' + link + '"]'));
+      });
+    } else {
+      allowedLinkElements.push($('a[href]'));
+    }
+
+    allowedLinkElements.forEach(linkElements => {
+      linkElements.each((i, element) => {
+        let url = $(element).attr('href');
+
+        // normalize the URLs as they're crawled
+        const absoluteUrl = normalizeUrl({url, baseUrl});
+
+        // follow links within the target website
+        if (
+          absoluteUrl &&
+          absoluteUrl.startsWith(baseUrl) &&
+          !visitedUrls.has(absoluteUrl) &&
+          !pagesQueue.includes(absoluteUrl)
+        ) {
+          allowedUrls.push(absoluteUrl);
+        }
+      });
+    });
+  } catch (e) {
+    console.error('invalid page');
+    return allowedUrls;
+  }
+
+  return allowedUrls;
+};
+
+/**
+ * Main crawler function
+ *
+ * @param {Object} param0 - Function parameters
+ * @param {string} param0.baseUrl - The base URL of the site
+ * @param {string} param0.initialPage - The initial page to start crawling
+ * @param {Array} param0.allowedPagesToVisit - The allowed pages to be visited
+ * @param {number} param0.maxCrawlLength - The maximum number of pages to crawl
+ * @param {number} param0.maxConcurrency - The maximum number of concurrent requests
+ * @param {Function} param0.dataHandler - The function to handle the crawled data
+ * @returns {Promise}
+ */
 const crawler = async ({
   baseUrl,
   initialPage,
@@ -49,7 +118,7 @@ const crawler = async ({
     let currentUrl = pagesQueue.shift();
 
     // normalize the URLs to an absolute path
-    const normalizedUrl = normalizeUrl(currentUrl, baseUrl);
+    const normalizedUrl = normalizeUrl({url: currentUrl, baseUrl});
     if (!normalizedUrl || visitedUrls.has(normalizedUrl)) return;
 
     // update the visited URLs set
@@ -61,38 +130,13 @@ const crawler = async ({
       // parse the website's html
       const $ = cheerio.load(response.data);
 
-      const groupedLinks = [];
-
-      if (allowedPagesToVisit) {
-        allowedPagesToVisit.forEach(link => {
-          groupedLinks.push($('a[href^="' + link + '"]'));
-        });
-      } else {
-        groupedLinks.push($('a[href]'));
-      }
-
-      groupedLinks.forEach(linkElements => {
-        linkElements.each((index, element) => {
-          let url = $(element).attr('href');
-
-          // normalize the URLs as they're crawled
-          const absoluteUrl = normalizeUrl(url, baseUrl);
-
-          // follow links within the target website
-          if (
-            absoluteUrl &&
-            absoluteUrl.startsWith(baseUrl) &&
-            !visitedUrls.has(absoluteUrl) &&
-            !pagesQueue.includes(absoluteUrl)
-          ) {
-            pagesQueue.push(absoluteUrl);
-          }
-        });
-      });
+      // update pagesQueue with new allowed links
+      pagesQueue.push(...getNewAllowedLinks({baseUrl, visitedUrls, pagesQueue, allowedPagesToVisit, $}));
 
       /////////////////////////////
       // CALL DATA HANDLER FUNCTION
       dataHandler(normalizedUrl, response.data);
+      /////////////////////////////
     } catch (error) {
       console.error(`error fetching ${currentUrl}: ${error.message}`);
     }
@@ -122,9 +166,13 @@ const crawler = async ({
     await Promise.allSettled(activePromises);
   };
 
+  console.time('#crawl');
+  console.log('Crawling started!');
+
   await crawlWithConcurrency();
 
   console.log('Crawling completed!');
+  console.timeEnd('#crawl');
 };
 
 export default crawler;
