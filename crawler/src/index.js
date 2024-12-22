@@ -1,17 +1,18 @@
 import crawler from './crawler.js';
+// import vectorStore from './vector-store/chroma-vector-store.js';
+import vectorStore from './vector-store/memory-vector-store.js';
+import readline from 'node:readline';
 
 
+import { ChatOpenAI } from '@langchain/openai';
 
-
-import { OpenAIEmbeddings, ChatOpenAI } from '@langchain/openai';
-import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 
 import { Document } from "langchain/document";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 
+
 import { createRetrieverTool } from "langchain/tools/retriever";
-import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
 import {
   ChatPromptTemplate,
@@ -24,23 +25,13 @@ import {
 const baseUrl = process.env.SITE_BASE_URL;
 const initialPage = process.env.SITE_INITIAL_PAGE;
 const allowedPagesToVisit = process.env.SITE_ALLOWED_PAGES !== '' ? process.env.SITE_ALLOWED_PAGES.split(',').map(i => i.trim()) : null;
-const maxCrawlLength = process.env.MAX_CRAWL_LENGTH || 10;
+const maxCrawlLength = process.env.MAX_CRAWL_NUM_PAGES || 10;
 const maxConcurrency = process.env.MAX_CONCURRENT_REQUESTS || 2;
 
 
 
-
-const embeddings = new OpenAIEmbeddings({
-  apiKey: process.env.OPENAI_API_KEY,
-  batchSize: process.env.BATCH_SIZE,
-  model: process.env.MODEL,
-});
-
-const vectorStore = new MemoryVectorStore(embeddings);
-
-
-
-
+// ############################
+// CRAWLER
 // define the data handler function
 const logPage = async (url, data) => {
   let text = data.replace(/<script.*>.*<\/script>/ims, '').replace(/<img[^>]*>/g,'').replace(/<(.|\n)*?>/ig, ' ').replace(/  /ig, '').replace(/\n/g,'|');
@@ -71,9 +62,10 @@ await crawler({
 
 
 
-
+//// ############################
+//// ASSISTANT SETUP
 const retriever = vectorStore.asRetriever({
-  k: 6,
+  k: 100,
   searchType: "mmr",
   searchKwargs: {
     fetchK: 20,
@@ -84,7 +76,7 @@ const retriever = vectorStore.asRetriever({
 
 const tool = createRetrieverTool(retriever, {
   name: "search_latest_knowledge",
-  description: "Realiza pesquisas e retorna informações gerais atualizadas a respeito das urls enviadas.",
+  description: "esta é uma base de dados a respeito de viagens da empresa VouDeTrip, um site sobre pacotes de viagens, responda as perguntas do usuário",
 });
 
 const chatModel = new ChatOpenAI({ model: "gpt-4o" });
@@ -110,15 +102,32 @@ const agentExecutor = new AgentExecutor({
   returnIntermediateSteps: false,
 });
 
-let result = await agentExecutor.invoke({
-  input: 'quais trips estão disponiveis?',
+
+
+
+//// ############################
+//// ASSISTANT TEST
+let rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
 });
 
-console.log(result);
+const waitForUserInput = function() {
+  rl.question('O que quer saber? \n', async function(userInput) {
+    if (userInput == 'exit'){
+      rl.close();
+      return;
+    }
 
-result = await agentExecutor.invoke({
-  input: 'fale algo sobre a viagem para porto seguro',
-});
+    let result = '';
 
-console.log(result);
+    result = await agentExecutor.invoke({
+      input: userInput,
+    });
+
+    console.log(result);
+    waitForUserInput();
+  });
+};
+waitForUserInput();
 

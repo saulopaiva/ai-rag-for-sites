@@ -11,10 +11,13 @@
   "author": "saulopaiva",
   "license": "ISC",
   "dependencies": {
+    "@langchain/community": "^0.3.19",
     "@langchain/core": "^0.3.26",
     "@langchain/openai": "^0.3.16",
     "axios": "^1.7.9",
     "cheerio": "^1.0.0",
+    "chromadb": "^1.9.4",
+    "chromadb-default-embed": "^2.13.2",
     "langchain": "^0.3.7"
   }
 }
