@@ -1,22 +1,19 @@
 import crawler from "./crawler.js";
 
 // specify the url of the site to crawl
-const baseUrl = 'https://voudetrip.com.br/';
+const baseUrl = process.env.SITE_BASE_URL;
 
 // initial page to start crawling
-const initialPage = 'https://voudetrip.com.br/destinos/';
+const initialPage = process.env.SITE_INITIAL_PAGE;
 
 // Only pages with this prefix will be visited
-const allowedPagesToVisit = [
-  '/viagens-para/',
-  '/trip/',
-];
+const allowedPagesToVisit = process.env.SITE_ALLOWED_PAGES.split(',').map(i => i.trim());
 
 // define the desired crawl limit
-const maxCrawlLength = 5;
+const maxCrawlLength = process.env.MAX_CRAWL_LENGTH;
 
 // set the number of concurrency
-const maxConcurrency = 2;
+const maxConcurrency = process.env.MAX_CONCURRENT_REQUESTS;
 
 // define the data handler function
 const logPage = (url, data) => {
