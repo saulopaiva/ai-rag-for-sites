@@ -1,6 +1,9 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+const pageFocusSelector = process.env.PAGE_FOCUS_SELECTOR && process.env.PAGE_FOCUS_SELECTOR !== '' ? process.env.PAGE_FOCUS_SELECTOR : null;
+const selectorNotFoundBehabvior = process.env.SELECTOR_NOT_FOUND_BEHAVIOR && process.env.SELECTOR_NOT_FOUND_BEHAVIOR !== '' ? process.env.SELECTOR_NOT_FOUND_BEHAVIOR : 'full_page';
+
 /**
  * Normalize the URL removing trailing slashes from the pathname
  *
@@ -124,6 +127,8 @@ const crawler = async ({
     // update the visited URLs set
     visitedUrls.add(normalizedUrl);
 
+    console.log('Crawling page:', normalizedUrl);
+
     try {
       // request the target URL with the Axios instance
       const response = await axiosInstance.get(normalizedUrl);
@@ -135,7 +140,22 @@ const crawler = async ({
 
       /////////////////////////////
       // CALL DATA HANDLER FUNCTION
-      dataHandler(normalizedUrl, response.data);
+      let pageHtml = response.data;
+      if (pageFocusSelector) {
+        let $page = $(pageFocusSelector)
+
+        if (!$page.length) {
+          if (selectorNotFoundBehabvior === 'full_page') {
+            pageHtml = response.data;
+          } else { // skip
+            return;
+          }
+        }
+
+        pageHtml = $page.html();
+      }
+
+      dataHandler(normalizedUrl, pageHtml);
       /////////////////////////////
     } catch (error) {
       console.error(`error fetching ${currentUrl}: ${error.message}`);

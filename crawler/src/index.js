@@ -1,7 +1,15 @@
 import crawler from './crawler.js';
 
+
+
+
 import { OpenAIEmbeddings, ChatOpenAI } from '@langchain/openai';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
+
+import { Document } from "langchain/document";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+
+
 import { createRetrieverTool } from "langchain/tools/retriever";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
@@ -35,18 +43,21 @@ const vectorStore = new MemoryVectorStore(embeddings);
 
 // define the data handler function
 const logPage = async (url, data) => {
-  console.log(url);
+  let text = data.replace(/<script.*>.*<\/script>/ims, '').replace(/<img[^>]*>/g,'').replace(/<(.|\n)*?>/ig, ' ').replace(/  /ig, '').replace(/\n/g,'|');
 
-  const document = {
-    pageContent: url,
-    metadata: { source: url },
-  };
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: process.env.CHUNK_SIZE || 1000,
+    chunkOverlap: process.env.CHUNK_OVERLAP || 100,
+  });
 
-  await vectorStore.addDocuments([document]);
+  const docOutput = await splitter.splitDocuments([
+    new Document({
+      pageContent: text,
+      metadata: { source: url }
+    }),
+  ]);
 
-  // convert data do markdown
-  // 1. page parse: https://github.com/saulopaiva/ai-site-assistant-poc/blob/main/degreegurucrawler/degreegurucrawler/spiders/configurable.py#L64
-  // 2. add to vectorstore https://js.langchain.com/docs/integrations/text_embedding/openai/
+  await vectorStore.addDocuments(docOutput);
 };
 
 await crawler({
@@ -76,10 +87,9 @@ const tool = createRetrieverTool(retriever, {
   description: "Realiza pesquisas e retorna informações gerais atualizadas a respeito das urls enviadas.",
 });
 
-const chatModel = new ChatOpenAI({ model: "gpt-4" });
+const chatModel = new ChatOpenAI({ model: "gpt-4o" });
 
-const AGENT_SYSTEM_TEMPLATE = `
-Responda em portugues`;
+const AGENT_SYSTEM_TEMPLATE = `Responda em portugues`;
 
 const prompt = ChatPromptTemplate.fromMessages([
   ["system", AGENT_SYSTEM_TEMPLATE],
@@ -97,14 +107,18 @@ const agent = await createOpenAIFunctionsAgent({
 const agentExecutor = new AgentExecutor({
   agent,
   tools: [tool],
-  // Set this if you want to receive all intermediate steps in the output of .invoke().
   returnIntermediateSteps: false,
 });
 
-const result = await agentExecutor.invoke({
-  input: 'qual a url de angra?',
+let result = await agentExecutor.invoke({
+  input: 'quais trips estão disponiveis?',
 });
 
 console.log(result);
 
-// embedder();
+result = await agentExecutor.invoke({
+  input: 'fale algo sobre a viagem para porto seguro',
+});
+
+console.log(result);
+
