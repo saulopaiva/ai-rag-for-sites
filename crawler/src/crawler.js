@@ -1,5 +1,7 @@
 import axios from 'axios';
+import chalk from 'chalk';
 import * as cheerio from 'cheerio';
+
 
 const pageFocusSelector = process.env.PAGE_FOCUS_SELECTOR && process.env.PAGE_FOCUS_SELECTOR !== '' ? process.env.PAGE_FOCUS_SELECTOR : null;
 const selectorNotFoundBehabvior = process.env.SELECTOR_NOT_FOUND_BEHAVIOR && process.env.SELECTOR_NOT_FOUND_BEHAVIOR !== '' ? process.env.SELECTOR_NOT_FOUND_BEHAVIOR : 'full_page';
@@ -25,7 +27,7 @@ const normalizeUrl = ({url, baseUrl}) => {
     // return the normalized url as a lowercase string
     return normalized.href.toLowerCase();
   } catch (e) {
-    console.error(`invalid url: ${url}`);
+    console.error(chalk.red(`invalid url: ${url}`));
     return null;
   }
 };
@@ -73,7 +75,7 @@ const getNewAllowedLinks = ({baseUrl, visitedUrls, pagesQueue, allowedPagesToVis
       });
     });
   } catch (e) {
-    console.error('invalid page');
+    console.error(chalk.red('invalid page'));
     return allowedUrls;
   }
 
@@ -127,7 +129,7 @@ const crawler = async ({
     // update the visited URLs set
     visitedUrls.add(normalizedUrl);
 
-    console.log('Crawling page:', normalizedUrl);
+    console.log(chalk.cyan('Crawling page:'), normalizedUrl);
 
     try {
       // request the target URL with the Axios instance
@@ -158,7 +160,7 @@ const crawler = async ({
       dataHandler(normalizedUrl, pageHtml);
       /////////////////////////////
     } catch (error) {
-      console.error(`error fetching ${currentUrl}: ${error.message}`);
+      console.error(chalk.red('error fetching:'), `${currentUrl}: ${error.message}`);
     }
   };
 
@@ -186,13 +188,13 @@ const crawler = async ({
     await Promise.allSettled(activePromises);
   };
 
-  console.time('#crawl');
-  console.log('Crawling started!');
+  console.time('#crawler time');
+  console.log(chalk.cyanBright('==========================\nCrawling started!'));
 
   await crawlWithConcurrency();
 
-  console.log('Crawling completed!');
-  console.timeEnd('#crawl');
+  console.log(chalk.cyanBright('Crawling completed!\n=========================='));
+  console.timeEnd('#crawler time');
 };
 
 export default crawler;

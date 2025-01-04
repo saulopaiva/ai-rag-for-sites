@@ -1,5 +1,6 @@
 // Node imports
 import readline from 'node:readline';
+import chalk from 'chalk';
 
 // Langchain imports
 import { ChatOpenAI } from '@langchain/openai';
@@ -103,7 +104,7 @@ let rl = readline.createInterface({
 });
 
 const waitForUserInput = function() {
-  rl.question('O que quer saber? \n', async function(userInput) {
+  rl.question(chalk.yellow('\nO que quer saber?\n'), async function(userInput) {
     if (userInput == 'exit'){
       rl.close();
       return;
