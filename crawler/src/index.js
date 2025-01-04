@@ -1,24 +1,18 @@
-import crawler from './crawler.js';
-// import vectorStore from './vector-store/chroma-vector-store.js';
-import vectorStore from './vector-store/memory-vector-store.js';
+// Node imports
 import readline from 'node:readline';
 
-
+// Langchain imports
 import { ChatOpenAI } from '@langchain/openai';
-
-
 import { Document } from "langchain/document";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-
-
-
 import { createRetrieverTool } from "langchain/tools/retriever";
 import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
-import {
-  ChatPromptTemplate,
-  MessagesPlaceholder,
-} from "@langchain/core/prompts";
+import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
 
+// Custom imports
+import crawler from './crawler.js';
+import vectorStore from './vector-store/memory-vector-store.js';
+// import vectorStore from './vector-store/chroma-vector-store.js';
 
 
 // Initialize basic environment variables
@@ -27,7 +21,6 @@ const initialPage = process.env.SITE_INITIAL_PAGE;
 const allowedPagesToVisit = process.env.SITE_ALLOWED_PAGES !== '' ? process.env.SITE_ALLOWED_PAGES.split(',').map(i => i.trim()) : null;
 const maxCrawlLength = process.env.MAX_CRAWL_NUM_PAGES || 10;
 const maxConcurrency = process.env.MAX_CONCURRENT_REQUESTS || 2;
-
 
 
 // ############################
@@ -61,12 +54,11 @@ await crawler({
 });
 
 
-
 //// ############################
 //// ASSISTANT SETUP
 const retriever = vectorStore.asRetriever({
   k: 100,
-  searchType: "mmr",
+  searchType: 'mmr',
   searchKwargs: {
     fetchK: 20,
     lambda: 0.5
@@ -75,19 +67,19 @@ const retriever = vectorStore.asRetriever({
 });
 
 const tool = createRetrieverTool(retriever, {
-  name: "search_latest_knowledge",
-  description: "esta é uma base de dados a respeito de viagens da empresa VouDeTrip, um site sobre pacotes de viagens, responda as perguntas do usuário",
+  name: 'search_latest_knowledge',
+  description: 'esta é uma base de dados a respeito de viagens da empresa VouDeTrip, um site sobre pacotes de viagens, responda as perguntas do usuário',
 });
 
-const chatModel = new ChatOpenAI({ model: "gpt-4o" });
+const chatModel = new ChatOpenAI({ model: 'gpt-4o' });
 
 const AGENT_SYSTEM_TEMPLATE = `Responda em portugues`;
 
 const prompt = ChatPromptTemplate.fromMessages([
-  ["system", AGENT_SYSTEM_TEMPLATE],
-  // new MessagesPlaceholder("chat_history"),
-  ["human", "{input}"],
-  new MessagesPlaceholder("agent_scratchpad"),
+  ['system', AGENT_SYSTEM_TEMPLATE],
+  // new MessagesPlaceholder('chat_history'),
+  ['human', '{input}'],
+  new MessagesPlaceholder('agent_scratchpad'),
 ]);
 
 const agent = await createOpenAIFunctionsAgent({
@@ -101,8 +93,6 @@ const agentExecutor = new AgentExecutor({
   tools: [tool],
   returnIntermediateSteps: false,
 });
-
-
 
 
 //// ############################
@@ -130,4 +120,3 @@ const waitForUserInput = function() {
   });
 };
 waitForUserInput();
-
