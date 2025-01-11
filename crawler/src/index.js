@@ -27,7 +27,7 @@ const maxConcurrency = process.env.MAX_CONCURRENT_REQUESTS || 2;
 // ############################
 // CRAWLER
 // define the data handler function
-const logPage = async (url, data) => {
+const turnPageIntoVector = async (url, data) => {
   let text = data.replace(/<script.*>.*<\/script>/ims, '').replace(/<img[^>]*>/g,'').replace(/<(.|\n)*?>/ig, ' ').replace(/  /ig, '').replace(/\n/g,'|');
 
   const splitter = new RecursiveCharacterTextSplitter({
@@ -51,7 +51,7 @@ await crawler({
   allowedPagesToVisit,
   maxCrawlLength,
   maxConcurrency,
-  dataHandler: logPage
+  dataHandler: turnPageIntoVector
 });
 
 
@@ -72,12 +72,10 @@ const tool = createRetrieverTool(retriever, {
   description: 'esta é uma base de dados a respeito de viagens da empresa VouDeTrip, um site sobre pacotes de viagens, responda as perguntas do usuário',
 });
 
-const chatModel = new ChatOpenAI({ model: 'gpt-4o' });
-
-const AGENT_SYSTEM_TEMPLATE = `Responda em portugues`;
+const chatModel = new ChatOpenAI({ model: process.env.MODEL_CHAT });
 
 const prompt = ChatPromptTemplate.fromMessages([
-  ['system', AGENT_SYSTEM_TEMPLATE],
+  ['system', process.env.AGENT_SYSTEM_TEMPLATE],
   // new MessagesPlaceholder('chat_history'),
   ['human', '{input}'],
   new MessagesPlaceholder('agent_scratchpad'),
