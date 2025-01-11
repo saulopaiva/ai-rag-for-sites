@@ -24,16 +24,21 @@ const maxCrawlLength = process.env.MAX_CRAWL_NUM_PAGES || 10;
 const maxConcurrency = process.env.MAX_CONCURRENT_REQUESTS || 2;
 
 
+const cleanHtml = (html) => {
+  return html.replace(/<script.*>.*<\/script>/ims, '').replace(/<style.*>.*<\/style>/ims, '').replace(/<img[^>]*>/g,'').replace(/<(.|\n)*?>/ig, ' ').replace(/  /ig, '').replace(/\n/g,'|');
+}
+
+
 // ############################
 // CRAWLER
 // define the data handler function
-const turnPageIntoVector = async (url, data) => {
-  let text = data.replace(/<script.*>.*<\/script>/ims, '').replace(/<img[^>]*>/g,'').replace(/<(.|\n)*?>/ig, ' ').replace(/  /ig, '').replace(/\n/g,'|');
+const splitter = new RecursiveCharacterTextSplitter({
+  chunkSize: process.env.CHUNK_SIZE || 1000,
+  chunkOverlap: process.env.CHUNK_OVERLAP || 100,
+});
 
-  const splitter = new RecursiveCharacterTextSplitter({
-    chunkSize: process.env.CHUNK_SIZE || 1000,
-    chunkOverlap: process.env.CHUNK_OVERLAP || 100,
-  });
+const turnPageIntoVector = async (url, data) => {
+  let text = cleanHtml(data);
 
   const docOutput = await splitter.splitDocuments([
     new Document({

@@ -1,13 +1,11 @@
 
 import { OpenAIEmbeddings, ChatOpenAI } from '@langchain/openai';
-import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import { Chroma } from "@langchain/community/vectorstores/chroma";
-import { ChromaClient } from "chromadb";
 
 
 const embeddings = new OpenAIEmbeddings({
   apiKey: process.env.OPENAI_API_KEY,
-  batchSize: process.env.BATCH_SIZE,
+  // batchSize: process.env.BATCH_SIZE,
   model: process.env.MODEL_EMBEDDING,
 });
 
