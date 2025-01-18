@@ -42,7 +42,7 @@ const turnPageIntoVector = async (url, data) => {
 
   const docOutput = await splitter.splitDocuments([
     new Document({
-      pageContent: text,
+      pageContent: text + ' fonte: ' + url,
       metadata: { source: url }
     }),
   ]);
@@ -62,19 +62,33 @@ await crawler({
 
 //// ############################
 //// ASSISTANT SETUP
+
+/**
+ * Create a retriever tool from the vector store
+ *
+ * The retriever tool is a tool that allows the agent to search for documents in the vector store
+ * based on the user input.
+ *
+ * Parameters:
+ * - k: the number of documents to retrieve
+ * - searchType: the type of search to perform (mmr, bm25, etc)
+ * - verbose: whether to print debug information
+ * - searchKwargs: the search parameters (fetchK, lambda, etc)
+ *    - fetchK: an intermediate number of results to fetch before applying further filtering or ranking.
+ *    - lambda: the trade-off between relevance and diversity. A value of 0.5 suggests an equal emphasis on both aspects.
+ */
 const retriever = vectorStore.asRetriever({
-  k: 100,
+  k: 10,
   searchType: 'mmr',
+  verbose: false,
   searchKwargs: {
-    fetchK: 20,
+    fetchK: 40,
     lambda: 0.5
   },
-  verbose: false
 });
 
 const tool = createRetrieverTool(retriever, {
   name: 'search_latest_knowledge',
-  description: 'esta é uma base de dados a respeito de viagens da empresa VouDeTrip, um site sobre pacotes de viagens, responda as perguntas do usuário',
 });
 
 const chatModel = new ChatOpenAI({ model: process.env.MODEL_CHAT });
