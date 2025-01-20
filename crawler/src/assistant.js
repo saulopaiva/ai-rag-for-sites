@@ -4,7 +4,7 @@ import { createRetrieverTool } from "langchain/tools/retriever";
 import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
 
-import vectorStore from './vector-store/memory-vector-store.js';
+import vectorStore from './vector-store/memory-vector-store.js'; //'./vector-store/chroma-vector-store.js';
 
 //// ############################
 //// ASSISTANT SETUP
@@ -52,10 +52,10 @@ const agent = await createOpenAIFunctionsAgent({
   prompt,
 });
 
-const agentExecutor = new AgentExecutor({
+const assistant = new AgentExecutor({
   agent,
   tools: [tool],
   returnIntermediateSteps: false,
 });
 
-export default agentExecutor;
+export default assistant;
