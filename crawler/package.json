@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --env-file=.env src/index.js"
+    "start": "node --env-file=.env src/index.js",
+    "automation": "node --env-file=.env src/index-automate.js"
   },
   "author": "saulopaiva",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "cheerio": "^1.0.0",
     "chromadb": "^1.9.4",
     "chromadb-default-embed": "^2.13.2",
+    "csv": "^6.3.11",
     "langchain": "^0.3.7"
   }
 }

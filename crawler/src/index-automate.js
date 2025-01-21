@@ -1,6 +1,9 @@
 // Node imports
 import readline from 'node:readline';
 import chalk from 'chalk';
+import fs from "node:fs";
+import { parse, transform, stringify } from 'csv';
+
 
 // Custom imports
 import crawler from './crawler.js';
@@ -29,27 +32,17 @@ await crawler({
 
 
 //// ############################
-//// ASSISTANT TEST MANUAL
-let rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+//// ASSISTANT TEST AUTOMATION
+fs.createReadStream(`${process.cwd()}/data/questions.csv`)
+  .pipe(parse({ delimiter: ',', from_line: 1, columns: true }))
+  .on('data', async function (row) {
 
-const waitForUserInput = function() {
-  rl.question(chalk.yellow('\nO que quer saber?\n'), async function(userInput) {
-    if (userInput == 'exit'){
-      rl.close();
-      return;
-    }
-
-    let result = '';
-
-    result = await assistant.invoke({
-      input: userInput,
+    let result = await assistant.invoke({
+      input: row.Question,
     });
 
     console.log(result);
-    waitForUserInput();
   });
-};
-waitForUserInput();
+
+
+
