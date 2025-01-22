@@ -1,3 +1,42 @@
 Identifier,Question,Type,Expectation,Response,Relevance,Accuracy,Clarity,Final-Assessment,Observations
-PG001,Quais pacotes estão disponíveis no site?,Genérico,,,,,,,
-PG002,Vocês têm pacotes para o Carnaval?,Genérico,,,,,,,
+PG001,"Quais pacotes estão disponíveis no site?",Genérico,,"Atualmente, o site Vou de Trip oferece diversos pacotes de viagem, incluindo:
+
+1. **Arraial do Cabo + Rio de Janeiro Centro**: Feriado prolongado de 4 dias para aproveitar as praias e atrações do Rio de Janeiro. A partir de R$ 1.165,89. [Detalhes do pacote](https://voudetrip.com.br/trip/parceirustur-turismo/arraial-do-cabo-rj/22448)
+
+2. **Carnaval Florianópolis – SC**: Uma viagem para curtir o Carnaval na Ilha da Magia, com muitas praias e festas. A partir de R$ 2.279,00. [Detalhes do pacote](https://voudetrip.com.br/trip/tatatur---agencia-de-turismo/florianopolis-sc/22506)
+
+3. **Thermas Hot World - Águas de Lindoia**: Passeio de um dia para relaxar em piscinas termais e aproveitar tobogãs. A partir de R$ 201,29. [Detalhes do pacote](https://voudetrip.com.br/trip/parceirustur-turismo/aguas-de-lindoia/22216)
+
+4. **Beto Carrero e Balneário Camboriú**: Fim de semana de aventura no Beto Carrero World e relaxamento em Balneário Camboriú. A partir de R$ 794,89. [Detalhes do pacote](https://voudetrip.com.br/trip/parceirustur-turismo/beto-carrero-world/22447)
+
+5. **Angra dos Reis - Samba em Alto Mar Canta Mulheres**: Um dia de samba e música em alto mar com open bar. A partir de R$ 397,39. [Detalhes do pacote](https://voudetrip.com.br/trip/parceirustur-turismo/angra-dos-reis/22446)
+
+6. **Arraial do Cabo, Macaé e Copacabana - RJ (Feriado Carnaval)**: 4 dias para aproveitar o Carnaval nas praias do Rio de Janeiro. A partir de R$ 1.270,94. [Detalhes do pacote](https://voudetrip.com.br/trip/emerson-felipe-excursoes/arraial-do-cabo-rj/22082)
+
+7. **Carnaval Arraial do Cabo, Macaé e Rio das Ostras**: Celebração do Carnaval em meio à beleza da Região dos Lagos. A partir de R$ 847,89. [Detalhes do pacote](https://voudetrip.com.br/trip/parceirustur-turismo/arraial-do-cabo-rj/22445)
+
+8. **Arraial do Cabo - RJ**: Passeio de um dia para desfrutar das belezas naturais de Arraial do Cabo. A partir de R$ 318,00. [Detalhes do pacote](https://voudetrip.com.br/trip/roots-trips/arraial-do-cabo-rj/22702)
+
+9. **Carnaval em Floripa**: 4 dias de Carnaval em Florianópolis, com praias e bloquinhos animados. A partir de R$ 1.271,89. [Detalhes do pacote](https://voudetrip.com.br/trip/parceirustur-turismo/florianopolis-sc/22437)
+
+10. **Carnaval 2025 Arraial do Cabo + Macaé + Copacabana - RJ**: Pacote de 4 dias para curtir o Carnaval nas praias do Rio de Janeiro. A partir de R$ 1.376,94. [Detalhes do pacote](https://voudetrip.com.br/trip/roots-trips/arraial-do-cabo-rj/22148)
+
+Cada pacote inclui diferentes atividades e comodidades, com opções de transporte, hospedagem e passeios adicionais. É importante conferir os detalhes e condições específicos de cada pacote no site Vou de Trip.",x,y,z,K,"Relevância: 5, Precisão: 5, Clareza: 5
+
+Avaliação Geral: A resposta é altamente relevante, fornecendo informações detalhadas sobre os pacotes disponíveis no site, o que está diretamente relacionado à pergunta do usuário. A precisão é exemplar, pois cada pacote é descrito com informações específicas, como local, duração e preço, além de um link para mais detalhes. A clareza da resposta é excelente, contendo uma lista bem estruturada e fácil de ler, permitindo que o usuário entenda rapidamente as opções disponíveis. A inclusão de links para os pacotes detalhados no site é um bônus que melhora ainda mais a utilidade da resposta."
+PG002,"Vocês têm pacotes para o Carnaval?",Genérico,,"Sim, há pacotes disponíveis para o Carnaval no site Vou de Trip. Algumas opções incluem:
+
+1. **Carnaval em Floripa** - A partir de R$ 1.271,89, com saída em 28/02/2025, incluindo 4 dias de diversão em Florianópolis, com transporte, hospedagem e traslados para a folia no centro [mais detalhes](https://voudetrip.com.br/trip/parceirustur-turismo/florianopolis-sc/22437).
+
+2. **Carnaval 2025 Arraial do Cabo + Macaé + Copacabana-RJ** - A partir de R$ 1.376,94, com transporte, hospedagem e passeios opcionais na região [mais detalhes](https://voudetrip.com.br/trip/roots-trips/arraial-do-cabo-rj/22148).
+
+3. **Carnaval Arraial do Cabo, Macaé e Rio das Ostras** - A partir de R$ 847,89, com opção de passeios e atividades na Região dos Lagos do Rio de Janeiro [mais detalhes](https://voudetrip.com.br/trip/parceirustur-turismo/arraial-do-cabo-rj/22445).
+
+4. **Carnaval Florianópolis – SC** - A partir de R$ 2.279,00, com pacote que inclui transporte, hospedagem e diversos passeios para explorar a Ilha da Magia [mais detalhes](https://voudetrip.com.br/trip/tatatur---agencia-de-turismo/florianopolis-sc/22506).
+
+Esses pacotes oferecem diversas atividades e atrações durante o Carnaval, variando em preço e itinerário. Para mais informações, você pode visitar os links dos pacotes específicos.",x,y,z,K,"Relevância: 5, Precisão: 5, Clareza: 5
+
+Avaliação Geral: A resposta é altamente relevante, pois aborda diretamente a pergunta sobre pacotes para o Carnaval. É precisa ao fornecer informações específicas sobre diferentes pacotes, incluindo preços e detalhes adicionais sobre o que está incluído. A informação é clara e bem estruturada, com links úteis para mais detalhes, facilitando o entendimento do usuário."
+PD010,"Preciso de um pacote para o mês passado, você pode ajudar?",Degradação,,"Infelizmente, não posso fornecer pacotes de viagens para datas que já passaram. Você pode verificar pacotes disponíveis para futuras datas no site Vou de Trip para planejar sua viagem. Se tiver outra dúvida ou necessidade de viagem, por favor me avise!",x,y,z,K,"Relevância: 5, Precisão: 5, Clareza: 5 ----
+
+A resposta está altamente relevante, abordando diretamente a impossibilidade de fornecer pacotes para datas passadas e sugerindo uma alternativa, ou seja, verificar pacotes para datas futuras. A precisão está correta, pois a informação de que pacotes não podem ser comprados para o passado é factual. A clareza é excelente, com linguagem simples, estrutura bem organizada e mensagem fácil de entender."

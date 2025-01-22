@@ -1,0 +1,167 @@
+[
+    {
+        "id": "PG001",
+        "question": "Quais pacotes estão disponíveis no site?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG002",
+        "question": "Vocês têm pacotes para o Carnaval?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG003",
+        "question": "Quais são os pacotes mais baratos disponíveis?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG004",
+        "question": "Existe algum pacote para Londrina?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG005",
+        "question": "Existe algum pacote para a Região dos Lagos?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG006",
+        "question": "O que está incluído nos pacotes de viagem?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG007",
+        "question": "Posso pagar parcelado por um pacote?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG008",
+        "question": "Como faço para reservar um pacote?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG009",
+        "question": "Existe algum desconto para grupos grandes?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG010",
+        "question": "Vocês oferecem pacotes internacionais?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG011",
+        "question": "Qual é o melhor pacote para quem quer relaxar na praia?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PG012",
+        "question": "Quais pacotes saem de piracicaba?",
+        "type": "Genérico"
+    },
+    {
+        "id": "PE001",
+        "question": "Qual é o preço do pacote de Arraial do Cabo para o Carnaval?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE002",
+        "question": "O que está incluído no pacote de Arraial do Cabo?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE003",
+        "question": "Quais são os pontos de embarque disponíveis para esse pacote?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE004",
+        "question": "O que acontece no primeiro dia do pacote de Arraial do Cabo?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE005",
+        "question": "Há opções de passeios adicionais no pacote de Arraial do Cabo?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE006",
+        "question": "Qual é o custo do passeio de escuna em Arraial do Cabo?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE007",
+        "question": "Onde será a hospedagem nesse pacote?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE008",
+        "question": "O pacote de Arraial do Cabo inclui alimentação?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE009",
+        "question": "Quais locais posso visitar em Rio das Ostras no segundo dia?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE010",
+        "question": "Qual é a programação do último dia em Arraial do Cabo?",
+        "type": "Específico"
+    },
+    {
+        "id": "PE011",
+        "question": "Como funciona o retorno para São Paulo nesse pacote?",
+        "type": "Específico"
+    },
+    {
+        "id": "PD001",
+        "question": "Qual é o preço do pacote para Marte?",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD002",
+        "question": "Me diga quais pacotes incluem uma visita ao Triângulo das Bermudas.",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD003",
+        "question": "Quem ganhou o Carnaval de 2020 em Arraial do Cabo?",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD004",
+        "question": "Por que o pacote custa tão caro? Não tem algo de graça?",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD005",
+        "question": "O que acontece se eu perder o ônibus em São Paulo?",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD006",
+        "question": "Quero um pacote que inclua uma viagem de balão por Arraial do Cabo.",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD007",
+        "question": "Qual é o número de telefone do motorista do ônibus?",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD008",
+        "question": "Me fale sobre pacotes para destinos inexistentes, como 'Atlantis'.",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD009",
+        "question": "É possível mudar o destino do pacote de Arraial para Gramado?",
+        "type": "Degradação"
+    },
+    {
+        "id": "PD010",
+        "question": "Preciso de um pacote para o mês passado, você pode ajudar?",
+        "type": "Degradação"
+    }
+]
