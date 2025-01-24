@@ -1,17 +1,7 @@
 [
     {
-        "id": "PG001",
-        "question": "Quais pacotes estão disponíveis no site?",
-        "type": "Genérico"
-    },
-    {
-        "id": "PG002",
-        "question": "Vocês têm pacotes para o Carnaval?",
-        "type": "Genérico"
-    },
-    {
-        "id": "PD010",
-        "question": "Preciso de um pacote para o mês passado, você pode ajudar?",
-        "type": "Degradação"
+        "id": "PE011",
+        "question": "Como funciona o retorno para São Paulo no pacote Arraial do Cabo + Rio de Janeiro CENTRO?",
+        "type": "Específico"
     }
 ]

@@ -91,8 +91,8 @@ const fakeTool = tool(
     return input;
   },
   {
-    name: "fake",
-    description: "do nothing",
+    name: 'fake',
+    description: 'do nothing',
   }
 );
 
