@@ -1,7 +1,7 @@
 [
     {
-        "id": "PE011",
-        "question": "Como funciona o retorno para São Paulo no pacote Arraial do Cabo + Rio de Janeiro CENTRO?",
-        "type": "Específico"
+        "id": "PD008",
+        "question": "Quais pacotes para o proximo final de semana?",
+        "type": "Degradação"
     }
 ]

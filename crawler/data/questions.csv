@@ -1,12 +1,23 @@
 Identifier,Question,Type,Response,Relevance,Accuracy,Clarity,Final-Assessment,Observations
-PE011,"Como funciona o retorno para São Paulo no pacote Arraial do Cabo + Rio de Janeiro CENTRO?",Específico,,"O retorno do pacote 'Arraial do Cabo + Rio de Janeiro CENTRO' para São Paulo está programado para o dia 21/04/2025, às 22:00. Os desembarques ocorrerão nos mesmos locais de embarque:
+PD008,"Quais pacotes para o proximo final de semana?",Degradação,,"Aqui estão alguns pacotes de viagem disponíveis para o próximo final de semana no site Vou de Trip:
 
-1. Metrô Santo Amaro
-2. Poupa Tempo Pirajussara
-3. Taboão da Serra - Centro
-4. Metrô São Paulo-Morumbi
-5. Memorial da América Latina Portão 7
+1. **Arraial do Cabo + Rio de Janeiro Centro**
+   - Duração: 4 dias
+   - Valor: A partir de R$ 1.165,89 por pessoa
+   - Detalhes do pacote e reservas: [Vou de Trip](https://voudetrip.com.br/trip/parceirustur-turismo/arraial-do-cabo-rj/22448)
 
-Para mais detalhes sobre o pacote, acesse [Vou de Trip - Arraial do Cabo + Rio de Janeiro CENTRO](https://voudetrip.com.br/trip/parceirustur-turismo/arraial-do-cabo-rj/22448).",x,y,z,K,"Relevância: 5, Precisão: 5, Clareza: 5
+2. **Thermas Hot World - Águas de Lindóia**
+   - Duração: 1 dia (bate-volta)
+   - Valor: A partir de R$ 201,29 por pessoa
+   - Detalhes do pacote e reservas: [Vou de Trip](https://voudetrip.com.br/trip/parceirustur-turismo/aguas-de-lindoia/22216)
 
-Avaliação geral: A resposta está altamente relevante ao fornecer diretamente as informações solicitadas sobre o retorno para São Paulo do pacote 'Arraial do Cabo + Rio de Janeiro CENTRO'. A precisão é garantida ao detalhar a data e hora de retorno, além de listar os locais de desembarque, que correspondem aos locais de embarque mencionados na descrição do pacote. A clareza é mantida ao utilizar uma linguagem direta e clara, facilitando a compreensão. As informações são completas e bem organizadas, atendendo totalmente à pergunta do usuário."
+3. **Arraial do Cabo - RJ**
+   - Duração: 1 dia (bate-volta)
+   - Valor: A partir de R$ 318,00 por pessoa
+   - Detalhes do pacote e reservas: [Vou de Trip](https://voudetrip.com.br/trip/roots-trips/arraial-do-cabo-rj/22702)
+
+Esses são alguns dos pacotes disponíveis, cada um oferece diversas atividades e opções de diversão. Para detalhes completos sobre cada viagem, você pode consultar os links fornecidos acima para visualizar o roteiro completo e realizar a reserva.",x,y,z,K,"Relevância: 5, Precisão: 4, Clareza: 5 
+
+A resposta é altamente relevante, pois oferece informações específicas sobre pacotes de viagem disponíveis para o próximo final de semana, respondendo diretamente à pergunta do usuário. Em termos de precisão, a resposta parece fornecer informações corretas, mas como não temos acesso à verificação dos detalhes dos pacotes no site referenciado, atribuímos um 4, assumindo que os detalhes estão corretos conforme descrito. A clareza é excelente, com uma estrutura bem organizada, fácil de entender, e com links para mais detalhes, garantindo que o usuário compreenda facilmente as opções. 
+
+Observações: A resposta poderia ser ainda mais precisa se oferecesse informações sobre o que está incluído em cada pacote (ex. transporte, hospedagem, café da manhã, etc.), caso tais detalhes fossem relevantes para o usuário."
